@@ -20,10 +20,10 @@ IF NOT EXISTS (select * from sys.databases where name = @db_audit_name) BEGIN
 /* CREACION DE BASE DE DATOS DE AUDITORIA */
 CREATE DATABASE [' + @db_audit_name + ']
  	ON  PRIMARY ( 
-		NAME = N''' + @db_audit_name + ''', FILENAME = N''C:\Database\' + @db_audit_name + '.mdf''
+		NAME = N''' + @db_audit_name + ''', FILENAME = @db_audit_path + @db_audit_name + '.mdf''
 	)
 	LOG ON ( 
-		NAME = N''' + @db_audit_name + '_log'', FILENAME = N''C:\Database\' + @db_audit_name + '_log.ldf'' 
+		NAME = N''' + @db_audit_name + '_log'', FILENAME = @db_audit_path + @db_audit_name + '_log.ldf'' 
 	)
 	
 '
